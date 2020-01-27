@@ -1,0 +1,126 @@
+https://www.koreahtml5.kr/
+  -> 프레임워크 - JavaScript - Node(Express)
+
+
+# node.js
+  Google Chrome 브라우저의 JavaScript 엔진 V8 기반 Framework
+  node 환경을 구축하면 JavaScript 언어를 쓸 수 있다.
+  -> 이제 Frontend 만 아니라 Backend 와 일반 App 개발에도 사용 가능!
+
+
+# API Server 구축 방법
+  Web Framework 를 쓰는게 좋다. ex) Express, Koa, Hapi
+
+  1. node.js 기본 방법
+
+    $ mkdir myapp
+    $ cd myapp
+    $ npm init
+      . app.js 또는 index.js 파일명 입력
+    $ npm install express --save
+
+    파일 생성 (앞에서 선택한 파일명)
+    === app.js 또는 index.js (취향) ===
+      const express = require('express')
+      const app = express()
+      const port = 3000
+
+      app.get('/', (req, res) => {
+        res.send('Hello World!')
+      })
+
+      app.listen(port, () => {
+        console.log(`Example app listening on port ${port}!`)
+      })
+
+    웹서버 실행!
+    $ node app.js 또는 npm start
+      . package.json 의 'scripts' 항목을 수정하면 npm start 명령으로 가능!
+        === package.json ===
+        {
+          "scripts": {
+            "start": "node app.js"
+          }
+        }
+
+  2. express-generator 이용
+
+    설치...
+    $ npm install -g express-generator
+
+    $ express myapp
+
+    $ cd myapp
+    $ npm install
+    $ DEBUG=myapp:* npm start
+
+
+# Basic routing (기본 라우팅 방법)
+
+  app.METHOD(PATH, HANDLER)
+
+  --- example
+  app.get('/', function (req, res) {
+    res.send('Hello World!')
+  })
+
+  app.post('/', function (req, res) {
+    res.send('Got a POST request')
+  })
+
+  app.put('/user', function (req, res) {
+    res.send('Got a PUT request at /user')
+  })
+
+  app.delete('/user', function (req, res) {
+    res.send('Got a DELETE request at /user')
+  })
+
+  * 이제 DB(MySQL, PostgreSQL, ...)만 연동하면
+
+
+# Express 기본 구성 요소
+  - Application
+    const express = require('express');
+    const app = express();
+
+    app.use(express.static('public'));
+    app.listen(3000, () => {
+      console.log('Example app listening on port 3000!');
+    });
+    app.get('/', (req, res) => {
+      res.send('Hello World!\n');
+    });
+
+  - Request
+    req.params: url 파라매터 정보를 조회
+    req.query: 쿼리 문자열을 조회
+    req.body: 요청 바디를 조회
+
+  - Response
+    res.send()
+    res.json()
+    res.status()
+
+  - Router
+    Router 클래스
+
+
+** REST API
+  - Method
+    . GET    "조회하다"
+    . POST   "생성하다"
+    . PUT    "갱신하다"
+    . DELETE "삭제하다"
+  - Response Status Code
+    . 2XX    성공
+        200: Success. 대부분의 성공 응답에 200번 상태 코드를 사용합니다.
+        201: Created. POST 메소드로 요청한다는 것은 서버에 자원 생성을 요청하는 의미인데 서버쪽에서 자원 생성에 성공하면 201 상태코드를 클라이언트로 응답합니다.
+        204: No Content. 서버에서 성공했는데 응답할 바디가 없을 경우 204 상태코드를 반환합니다.
+    . 4XX:   클라이언트 요청 에러
+        400: Bad Request. 클라이언트에서 파라매터를 포함하여 서버 API를 요청하는데 파라매터가 잘못되었을 경우 응답하는 코드입니다.
+        401: Unauthorized. 인증이 필요한 API에 대해 인증되지 않은 요청일 경우 401을 응답합니다. 예를 들어 OAuth를 사용할 때 엑세스 토큰(access token)이 유효하지 않을 경우입니다.
+        403: Fobbiden. 401과 유사하면서 사용 방밥에 대한 해석은 개발자마다 다른것 같습니다. 저는 로그인 실패시 403으로 응답하고 있습니다.
+        404: Not found. 조회할 자원이 서버에 없는 경우 응답하는 코드입니다. 웹브라우져로 어떤 페이지를 찾을 때 그 페이지가 없는 경우 보통 404 페이지라고 부르기도 합니다.
+        409: Conflict. 클라이언트에서 POST 메소드로 서버에게 자원 추가를 요청했을 때 이미 그자원이 서버에 있어서 자원을 추가할 수 없는 경우 409 상태코드로 응답합니다.
+    . 5XX:   서버 응답 에러
