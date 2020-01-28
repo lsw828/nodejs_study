@@ -106,7 +106,7 @@ https://www.koreahtml5.kr/
     Router 클래스
 
 
-** REST API
+# REST API
   - Method
     . GET    "조회하다"
     . POST   "생성하다"
@@ -124,3 +124,9 @@ https://www.koreahtml5.kr/
         404: Not found. 조회할 자원이 서버에 없는 경우 응답하는 코드입니다. 웹브라우져로 어떤 페이지를 찾을 때 그 페이지가 없는 경우 보통 404 페이지라고 부르기도 합니다.
         409: Conflict. 클라이언트에서 POST 메소드로 서버에게 자원 추가를 요청했을 때 이미 그자원이 서버에 있어서 자원을 추가할 수 없는 경우 409 상태코드로 응답합니다.
     . 5XX:   서버 응답 에러
+
+
+* 관련 예제 -> 이 코드 안에 사용법이 다 있으니 꼭 참고할 것!
+  myapp : https://github.com/lsw828/nodejs_study/tree/master/myapp
+
+
