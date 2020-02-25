@@ -16,11 +16,11 @@ https://www.koreahtml5.kr/
     $ mkdir myapp
     $ cd myapp
     $ npm init
-      . app.js 또는 index.js 파일명 입력
+      . app.js (또는 index.js) 파일명 입력
     $ npm install express --save
 
     파일 생성 (앞에서 선택한 파일명)
-    === app.js 또는 index.js (취향) ===
+    === app.js (또는 index.js) ===
       const express = require('express')
       const app = express()
       const port = 3000
@@ -138,9 +138,11 @@ https://www.koreahtml5.kr/
       > insert into users (name) values ('starbucks');
 
   - express 프로젝트 업데이트
-  mpn install mysql --save
+  npm install mysql --save
 
 
 * 관련 예제 -> 이 코드 안에 사용법이 다 있으니 꼭 참고할 것!
   myapp : https://github.com/lsw828/nodejs_study/tree/master/myapp
+
+
 

@@ -119,6 +119,8 @@ router.get('/', (req, res) => {
 
 // Read
 router.get('/:id', (req, res) => {
+  console.log("get()")
+
   const id = parseInt(req.params.id, 10)
   if (!id) {  // NaN
     return res.status(400).json({error: 'Incorrent id'})
@@ -144,6 +146,8 @@ router.get('/:id', (req, res) => {
 
 // Create
 router.post('/', (req, res) => {
+  console.log("post()")
+
   const name = req.body.name || ''
   if (!name.length) {
     return res.status(400).json({error: 'Incorrenct name'});
